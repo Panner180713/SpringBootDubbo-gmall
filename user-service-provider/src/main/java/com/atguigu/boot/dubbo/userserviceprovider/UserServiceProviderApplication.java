@@ -1,6 +1,8 @@
 package com.atguigu.boot.dubbo.userserviceprovider;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import com.atguigu.boot.dubbo.userserviceprovider.entities.Student;
+import com.atguigu.boot.dubbo.userserviceprovider.utils.ApplicationContextUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -15,6 +17,9 @@ public class UserServiceProviderApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UserServiceProviderApplication.class, args);
+
+        Student student = ApplicationContextUtil.getBean(Student.class);
+        System.out.println(student);
     }
 
 }
