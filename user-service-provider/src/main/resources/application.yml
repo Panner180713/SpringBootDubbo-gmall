@@ -1,0 +1,16 @@
+#因为dubbo的监控中心默认使用了8080端口，所以此模块使用其他端口，避免端口占用
+server:
+  port: 8082
+
+#dubbo在sprignboot中的相关配置与在spring项目xml中的配置一一对应
+dubbo:
+  application:
+    name: user-service-provider
+  registry:
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20882
+  monitor:
+    protocol: registry

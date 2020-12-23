@@ -1,0 +1,24 @@
+dubbo知识点:
+1.在服务提供者与服务消费者启动之后，若注册中心宕机，服务提供者和服务消费者仍能通过本地缓存通讯
+2.dubbo负载均衡的四种机制：
+    1)基于权重的随机负载均衡机制(默认)
+    2)基于权重的轮询负载均衡机制
+    3)最少活跃数负载均衡机制
+    4)一致性hash负载均衡机制
+3.修改负载均衡机制：
+可以在消费者方或提供者方为类或方法设置loadbalance属性以改变类或方法的负载均衡机制
+4.服务降级的两种方式：
+1)mock=force:return+null 屏蔽，将不发起远程调用直接在客户端返回null。
+2)mock=fail:return+null 容错，当远程调用失败时，返回null。
+
+
+springboot知识点:
+1.@SpringBootApplication注解详解:
+  (1)@SpringBootConfiguration表示这是一个springboot的配置类
+  (2)@EnableAutoConfiguration开启自动配置，使自动配置生效
+    (2.1)@AutoConfigurationPackage自动配置包
+      (2.1.1)@Import({AutoConfigurationPackages.Registrar.class})给容器导入一个名为AutoConfigurationPackages.Registrar.class的组件，
+      这个组件将主配置类所在包及其所有子包中的组件导入到容器中
+    (2.2)@Import({AutoConfigurationImportSelector.class})给容器导入一个名为AutoConfigurationImportSelector.class的组件，
+    给容器中导入非常多的自动配置类(xxxautoConfigration)，并配置好这些组件。
+    springboot在启动的时候从类路径下META-INF/spring.factories的EnableAutoConfiguration中获取指定的值，将这些值作为自动配置类导入到容器中。
