@@ -14,8 +14,3 @@ server:
 #    port: 20882
 #  monitor:
 #    protocol: registry
-
-student:
-  id: 1001
-  name: tony
-  age: 18
