@@ -26,8 +26,13 @@ springboot知识点:
 2.@ImportResource(locations = {"classpath:beans.xml"}) 标注在一个配置类上。导入spring的配置文件，让配置文件里面的内容生效。
 不推荐使用配置文件的方式注入组件，推荐使用@Configuration和@Bean的方式。
 
-3.spring底层@Condition注解，如果满足指定的条件，整个配置类里面的配置就会生效。
+3.@EnableConfigurationProperties(xxxProperties.class)启动指定类的ConfigurationProperties功能，将配置文件中指定的值和xxxProperties.class映射起来，
+并把xxxProperties.class对应的bean加入到容器中。
+
+4.spring底层@Condition注解，如果满足指定的条件，整个配置类里面的配置就会生效。一旦这个配置类生效，这个配置类就会给容器中添加各种组件(@Bean)
+组件的属性是从对应的xxxProperties类中获取的，这个类中每一个属性又是和配置文件映射的。
   (3.1)@ConditionalOnWebApplication判断当前应用是否是web应用，如果是，当前配置类生效。
-  (3.2)@ConditionalOnClass(xxx.class)判断当前项目中有没有这个组件
+  (3.2)@ConditionalOnClass(xxx.class)判断当前项目中有没有这个类
   (3.3)@ConditionalOnProperty(prefix = "spring.http.encoding" value = "enabled" matchIfMissing = true)
   判断配置文件中是否存在某个配置。matchIfMissing = true，即使配置文件中不存在此配置，判断也是成立的。
+  (3.4)@ConditionalOnMissingBean(xxx.class)判断容器中有没有这个bean
