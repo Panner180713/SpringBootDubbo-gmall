@@ -22,3 +22,11 @@ springboot知识点:
     (2.2)@Import({AutoConfigurationImportSelector.class})给容器导入一个名为AutoConfigurationImportSelector.class的组件，
     给容器中导入非常多的自动配置类(xxxautoConfigration)，并配置好这些组件。
     springboot在启动的时候从类路径下META-INF/spring.factories的EnableAutoConfiguration中获取指定的值，将这些值作为自动配置类导入到容器中。
+
+2.@ImportResource(locations = {"classpath:beans.xml"}) 标注在一个配置类上。导入spring的配置文件，让配置文件里面的内容生效。
+不推荐使用配置文件的方式注入组件，推荐使用@Configuration和@Bean的方式。
+
+3.spring底层@Condition注解，如果满足指定的条件，整个配置类里面的配置就会生效。
+  (3.1)@ConditionalOnWebApplication判断当前应用是否是web应用，如果是，当前配置类生效。
+  (3.2)@ConditionalOnClass(xxx.class)判断当前项目中有没有这个组件
+  (3.3)@ConditionalOnProperty
